@@ -1,26 +1,80 @@
-import { OPEN_FORM, CLOSE_FORM, GET_TASKS } from './type';
+import {
+  OPEN_ADD,
+  CLOSE_ADD,
+  GET_TASKS,
+  ADD_TASK,
+  DELETE_TASK,
+  SET_CURRENT_TASK,
+  UPDATE_TASK,
+  REMOVE_CURRENT_TASK
+} from './type';
 
-// New task form open action
-export function openForm() {
-  console.log('open form');
+// New task form
+// open
+export function openAdd() {
+  console.log('open add form');
   return {
-    type: OPEN_FORM,
+    type: OPEN_ADD,
     payload: false
   };
 }
 
-// New task form close action
-export function closeForm() {
-  console.log('close form');
+// close
+export function closeAdd() {
+  console.log('close add form');
   return {
-    type: CLOSE_FORM,
+    type: CLOSE_ADD,
     payload: true
   };
 }
 
+// Get tasks
 export function getTasks() {
   console.log('get tasks');
   return {
     type: GET_TASKS
+  };
+}
+
+// Add new task
+export function addTask(task) {
+  console.log('add task');
+  return {
+    type: ADD_TASK,
+    payload: task
+  };
+}
+
+// Delete task
+export function deleteTask(id) {
+  console.log('delete task', id);
+  return {
+    type: DELETE_TASK,
+    payload: id
+  };
+}
+
+// Set current task to edit
+export function setCurrentTask(id) {
+  console.log('set current task');
+  return {
+    type: SET_CURRENT_TASK,
+    payload: id
+  };
+}
+
+// Update new task
+export function updateTask(task, id) {
+  return {
+    type: UPDATE_TASK,
+    payload: { task, id }
+  };
+}
+
+// Remove current task to unmount edit component
+export function removeCurrentTask(id) {
+  console.log('remove current task');
+  return {
+    type: REMOVE_CURRENT_TASK
   };
 }

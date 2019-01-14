@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getTasks } from './../../../actions/actions';
+import { getTasks } from './../../actions/actions';
 import PropTypes from 'prop-types';
 import Task from './Task';
 
 class Tasks extends Component {
   componentDidMount() {
-    console.log(55, this.props);
-    getTasks();
+    this.props.getTasks();
   }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount()');
+  }
+
   render() {
     const { tasks } = this.props;
-    console.log(tasks);
+
     return (
       <div id="tasksCollection" className="row justify-content-center">
         <div className="col">
@@ -35,11 +39,7 @@ Tasks.propTypes = {
   getTasks: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  tasks: state.tasks.items
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { getTasks }
 )(Tasks);

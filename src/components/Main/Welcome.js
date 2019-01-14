@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Welcome extends Component {
+class Welcome extends Component {
   render() {
     return (
       <div id="welcomeCard" className="row justify-content-center">
@@ -22,3 +22,4 @@ export default class Welcome extends Component {
     );
   }
 }
+export default Welcome;

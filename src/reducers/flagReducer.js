@@ -1,14 +1,13 @@
-import { OPEN_FORM, CLOSE_FORM } from './../actions/type';
+import { OPEN_ADD, CLOSE_ADD } from './../actions/type';
 
-const initialState = { closeNewTaskForm: true, someState: 'Hello' };
+const initialState = { closeAddForm: true };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case OPEN_FORM:
-      console.log(77);
-      return { ...state, closeNewTaskForm: action.payload };
-    case CLOSE_FORM:
-      return { ...state, closeNewTaskForm: action.payload };
+    case OPEN_ADD:
+      return { ...state, closeAddForm: action.payload };
+    case CLOSE_ADD:
+      return { ...state, closeAddForm: action.payload };
     default:
       return state;
   }

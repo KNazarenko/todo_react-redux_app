@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import logo from '../../assets/img/github-logo-invert.png';
+import logo from '../assets/img/github-logo-invert.png';
 import { connect } from 'react-redux';
-import { openForm } from './../../actions/actions';
+import { openAdd, removeCurrentTask } from './../actions/actions';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
+  onNewTaskClick() {
+    this.props.removeCurrentTask();
+    this.props.openAdd();
+  }
+
   render() {
+    // Total tasks number
+    const tasks = this.props.tasks.length;
+
     return (
       <nav className="navbar navbar-dark bg-dark text-light">
         <div className="container col-md-8 col-xl-6 justify-content-between">
@@ -24,17 +32,14 @@ class Header extends Component {
           </a>
           <button
             type="button"
-            id="newTaskBtn"
             className="btn btn-warning btn-sm"
-            onClick={this.props.openForm}
+            onClick={this.onNewTaskClick.bind(this)}
           >
             New task
           </button>
-          <div className="df">
+          <div>
             Total tasks:
-            <strong className="text-warning pl-2" id="totalTasks">
-              0
-            </strong>
+            <strong className="text-warning pl-2">{tasks}</strong>
           </div>
         </div>
       </nav>
@@ -43,10 +48,16 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  openForm: PropTypes.func.isRequired
+  tasks: PropTypes.array.isRequired,
+  removeCurrentTask: PropTypes.func.isRequired,
+  openAdd: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  tasks: state.tasks.items
+});
+
 export default connect(
-  null,
-  { openForm }
+  mapStateToProps,
+  { removeCurrentTask, openAdd }
 )(Header);
