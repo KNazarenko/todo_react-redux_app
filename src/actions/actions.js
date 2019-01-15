@@ -6,7 +6,9 @@ import {
   DELETE_TASK,
   SET_CURRENT_TASK,
   UPDATE_TASK,
-  REMOVE_CURRENT_TASK
+  REMOVE_CURRENT_TASK,
+  SET_CURRENT_SELECT,
+  SET_CURRENT_SELECT_lIST
 } from './type';
 
 // New task form
@@ -48,6 +50,7 @@ export function addTask(task) {
 // Delete task
 export function deleteTask(id) {
   console.log('delete task', id);
+  // debugger;
   return {
     type: DELETE_TASK,
     payload: id
@@ -72,9 +75,24 @@ export function updateTask(task, id) {
 }
 
 // Remove current task to unmount edit component
-export function removeCurrentTask(id) {
+export function removeCurrentTask() {
   console.log('remove current task');
   return {
     type: REMOVE_CURRENT_TASK
+  };
+}
+
+/**
+|--------------------------------------------------
+| Select
+|--------------------------------------------------
+*/
+
+// Set current select project
+export function setCurrentSelect(name) {
+  console.log('setCurrentSelect:', name);
+  return {
+    type: SET_CURRENT_SELECT,
+    payload: name
   };
 }

@@ -13,8 +13,7 @@ class Edit extends Component {
     console.log('componentDidMount()', this.props);
     const [
       { ID, name, project, priority, description }
-    ] = this.props.currentItem;
-    console.log(ID, name, project, priority, description);
+    ] = this.props.tasks.currentItem;
 
     this.setState({
       ID,

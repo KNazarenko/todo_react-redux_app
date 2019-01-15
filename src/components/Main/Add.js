@@ -5,20 +5,24 @@ import { closeAdd, addTask } from './../../actions/actions';
 import uuid from 'uuid';
 
 class Add extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      project: '',
+      priority: '1',
+      description: '',
+      error: {}
+    };
+
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  }
   closeAddForm(e) {
     e.preventDefault();
     this.clearState();
     this.props.closeAdd();
   }
-
-  // Local state
-  state = {
-    name: '',
-    project: '',
-    priority: '1',
-    description: '',
-    error: {}
-  };
 
   // Clear State
   clearState() {

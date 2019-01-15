@@ -4,10 +4,12 @@ import {
   DELETE_TASK,
   SET_CURRENT_TASK,
   UPDATE_TASK,
-  REMOVE_CURRENT_TASK
+  REMOVE_CURRENT_TASK,
+  SET_CURRENT_SELECT
 } from './../actions/type';
 
 const initialState = {
+  // All tasks
   items: [
     {
       ID: '1',
@@ -29,10 +31,30 @@ const initialState = {
       project: 'Project2',
       priority: '1',
       description: 'to buy a car'
+    },
+    {
+      ID: '4',
+      name: 'Task04',
+      project: 'Project2',
+      priority: '2',
+      description: 'do the exercises'
     }
   ],
-  currentItem: []
+  // Current task
+  currentItem: [],
+  // For filter by select method
+  selectedFlag: 'All tasks',
+  // Selected project name
+  selectedProjectName: '',
+  // Selected tasks by project name
+  selectedItems: []
 };
+
+/**
+|--------------------------------------------------
+| 
+|--------------------------------------------------
+*/
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -43,12 +65,15 @@ export default function(state = initialState, action) {
     case ADD_TASK:
       return {
         ...state,
-        items: [...state.items, action.payload]
+        items: [...state.items, action.payload],
+        selectedItems: []
       };
     case DELETE_TASK:
+      console.log('DELETE_TASK');
       return {
         ...state,
-        items: state.items.filter(item => item.ID !== action.payload)
+        items: state.items.filter(item => item.ID !== action.payload),
+        selectedItems: []
       };
     case SET_CURRENT_TASK:
       return {
@@ -56,16 +81,29 @@ export default function(state = initialState, action) {
         currentItem: state.items.filter(item => item.ID === action.payload)
       };
     case UPDATE_TASK:
+      console.log('UPDATE_TASK');
       return {
         ...state,
         items: state.items.map(item =>
           item.ID === action.payload.id ? (item = action.payload.task) : item
-        )
+        ),
+        selectedItems: []
       };
     case REMOVE_CURRENT_TASK:
+      console.log('REMOVE_CURRENT_TASK');
       return {
         ...state,
         currentItem: []
+      };
+    case SET_CURRENT_SELECT:
+      console.log('SET_CURRENT_SELECT', action.payload, state.items[0].project);
+      // debugger;
+      return {
+        ...state,
+        selectedProjectName: action.payload,
+        selectedItems: state.items.filter(
+          item => item.project === action.payload
+        )
       };
     default:
       return state;

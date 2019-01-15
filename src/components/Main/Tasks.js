@@ -9,12 +9,8 @@ class Tasks extends Component {
     this.props.getTasks();
   }
 
-  componentWillUnmount() {
-    console.log('componentWillUnmount()');
-  }
-
   render() {
-    const { tasks } = this.props;
+    const items = this.props.tasks;
 
     return (
       <div id="tasksCollection" className="row justify-content-center">
@@ -24,8 +20,8 @@ class Tasks extends Component {
             className="jumbotron pt-0 pb-2 border mb-0"
             style={{ maxHeight: '300px', overflow: 'auto' }}
           >
-            {tasks.map(function(task) {
-              return <Task key={task.ID} {...task} />;
+            {items.map(function(item) {
+              return <Task key={item.ID} {...item} />;
             })}
           </ul>
         </div>
@@ -35,7 +31,6 @@ class Tasks extends Component {
 }
 
 Tasks.propTypes = {
-  tasks: PropTypes.array.isRequired,
   getTasks: PropTypes.func.isRequired
 };
 
