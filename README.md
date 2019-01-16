@@ -1,3 +1,14 @@
+## Task Description
+
+### Приложение для хранения списка задач в соответствии с заданием:
+
+- [описание](https://github.com/KNazarenko/KNazarenko.github.io/blob/master/task10_todo_webpack/task-description/%D1%82%D0%B7.txt)
+- [макет 1](https://github.com/KNazarenko/KNazarenko.github.io/blob/master/task10_todo_webpack/task-description/Page%201.png)
+- [макет 2](https://github.com/KNazarenko/KNazarenko.github.io/blob/master/task10_todo_webpack/task-description/Page%202.png)
+- [видео с демонстрацией функционала](http://take.ms/Fpmq9)
+
+### [Demo](https://knazarenko.github.io/todo_react-redux_app/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

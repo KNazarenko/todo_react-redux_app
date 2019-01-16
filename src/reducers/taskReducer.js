@@ -5,41 +5,15 @@ import {
   SET_CURRENT_TASK,
   UPDATE_TASK,
   REMOVE_CURRENT_TASK,
-  SET_CURRENT_SELECT
+  SET_CURRENT_SELECT,
+  DO_SORT
 } from './../actions/type';
 
 const initialState = {
   // All tasks
-  items: [
-    {
-      ID: '1',
-      name: 'Task01',
-      project: 'Project1',
-      priority: '2',
-      description: 'to make some coffee'
-    },
-    {
-      ID: '2',
-      name: 'Task02',
-      project: 'Project1',
-      priority: '3',
-      description: 'to go for a walk'
-    },
-    {
-      ID: '3',
-      name: 'Task03',
-      project: 'Project2',
-      priority: '1',
-      description: 'to buy a car'
-    },
-    {
-      ID: '4',
-      name: 'Task04',
-      project: 'Project2',
-      priority: '2',
-      description: 'do the exercises'
-    }
-  ],
+  items: [],
+  // Sorted by priority tasks
+  sortItems: [],
   // Current task
   currentItem: [],
   // For filter by select method
@@ -47,7 +21,11 @@ const initialState = {
   // Selected project name
   selectedProjectName: '',
   // Selected tasks by project name
-  selectedItems: []
+  selectedItems: [],
+  // Selected and sorted tasks
+  selectAndSortItems: [],
+  // Sort by priority flag
+  sortByPriority: false
 };
 
 /**
@@ -60,7 +38,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_TASKS:
       return {
-        ...state
+        ...state,
+        items: action.payload
       };
     case ADD_TASK:
       return {
@@ -69,11 +48,11 @@ export default function(state = initialState, action) {
         selectedItems: []
       };
     case DELETE_TASK:
-      console.log('DELETE_TASK');
       return {
         ...state,
         items: state.items.filter(item => item.ID !== action.payload),
-        selectedItems: []
+        selectedItems: [],
+        sortByPriority: false
       };
     case SET_CURRENT_TASK:
       return {
@@ -81,29 +60,38 @@ export default function(state = initialState, action) {
         currentItem: state.items.filter(item => item.ID === action.payload)
       };
     case UPDATE_TASK:
-      console.log('UPDATE_TASK');
       return {
         ...state,
         items: state.items.map(item =>
           item.ID === action.payload.id ? (item = action.payload.task) : item
         ),
-        selectedItems: []
+        selectedItems: [],
+        sortByPriority: false
       };
     case REMOVE_CURRENT_TASK:
-      console.log('REMOVE_CURRENT_TASK');
       return {
         ...state,
         currentItem: []
       };
     case SET_CURRENT_SELECT:
-      console.log('SET_CURRENT_SELECT', action.payload, state.items[0].project);
-      // debugger;
       return {
         ...state,
         selectedProjectName: action.payload,
         selectedItems: state.items.filter(
           item => item.project === action.payload
-        )
+        ),
+        sortByPriority: false
+      };
+    case DO_SORT:
+      return {
+        ...state,
+        sortByPriority: action.payload,
+        sortItems: [...state.items].sort(function(a, b) {
+          return parseInt(a['priority']) > parseInt(b['priority']) ? 1 : -1;
+        }),
+        selectAndSortItems: [...state.selectedItems].sort(function(a, b) {
+          return parseInt(a['priority']) > parseInt(b['priority']) ? 1 : -1;
+        })
       };
     default:
       return state;

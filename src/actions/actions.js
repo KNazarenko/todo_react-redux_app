@@ -8,13 +8,35 @@ import {
   UPDATE_TASK,
   REMOVE_CURRENT_TASK,
   SET_CURRENT_SELECT,
-  SET_CURRENT_SELECT_lIST
+  DO_SORT
 } from './type';
 
-// New task form
+import jsonData from './data.json';
+
+/**
+ |--------------------------------------------------
+ | Get data
+ |--------------------------------------------------
+ */
+
+// Get tasks
+export function getTasks() {
+  console.log('get data');
+  const loadData = JSON.parse(JSON.stringify(jsonData));
+
+  return {
+    type: GET_TASKS,
+    payload: loadData
+  };
+}
+
+/**
+|--------------------------------------------------
+| New task form
+|--------------------------------------------------
+*/
 // open
 export function openAdd() {
-  console.log('open add form');
   return {
     type: OPEN_ADD,
     payload: false
@@ -23,43 +45,48 @@ export function openAdd() {
 
 // close
 export function closeAdd() {
-  console.log('close add form');
   return {
     type: CLOSE_ADD,
     payload: true
   };
 }
 
-// Get tasks
-export function getTasks() {
-  console.log('get tasks');
-  return {
-    type: GET_TASKS
-  };
-}
+/**
+|--------------------------------------------------
+| Add
+|--------------------------------------------------
+*/
 
 // Add new task
 export function addTask(task) {
-  console.log('add task');
   return {
     type: ADD_TASK,
     payload: task
   };
 }
 
+/**
+|--------------------------------------------------
+| Delete
+|--------------------------------------------------
+*/
+
 // Delete task
 export function deleteTask(id) {
-  console.log('delete task', id);
-  // debugger;
   return {
     type: DELETE_TASK,
     payload: id
   };
 }
 
+/**
+|--------------------------------------------------
+| Edit
+|--------------------------------------------------
+*/
+
 // Set current task to edit
 export function setCurrentTask(id) {
-  console.log('set current task');
   return {
     type: SET_CURRENT_TASK,
     payload: id
@@ -76,7 +103,6 @@ export function updateTask(task, id) {
 
 // Remove current task to unmount edit component
 export function removeCurrentTask() {
-  console.log('remove current task');
   return {
     type: REMOVE_CURRENT_TASK
   };
@@ -90,9 +116,22 @@ export function removeCurrentTask() {
 
 // Set current select project
 export function setCurrentSelect(name) {
-  console.log('setCurrentSelect:', name);
   return {
     type: SET_CURRENT_SELECT,
     payload: name
+  };
+}
+
+/**
+|--------------------------------------------------
+| Sort
+|--------------------------------------------------
+*/
+
+// Set sort by priority flag
+export function doSortByPriority(checked) {
+  return {
+    type: DO_SORT,
+    payload: checked
   };
 }

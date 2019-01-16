@@ -8,33 +8,6 @@ export class Select extends Component {
     this.props.setCurrentSelect(e.target.value);
   }
 
-  // Local state to maximize description
-  // state = {
-  //   selected: ''
-  // };
-
-  // changeState(newState) {
-  //   this.setState({
-  //     selected: newState
-  //   });
-  // }
-
-  // componentDidMount() {
-  //   console.log('componentDidMount()');
-  //   const { selectedFlag } = this.props.tasks;
-  //   this.changeState(selectedFlag);
-  // }
-
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate()');
-  //   // const { selectedFlag } = this.props.tasks;
-  //   // this.changeState(selectedFlag);
-  // }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps()');
-  }
-
   render() {
     const {
       items,
@@ -46,29 +19,34 @@ export class Select extends Component {
     let selectProjects = [];
 
     return (
-      <React.Fragment>
-        <label className="my-1 float-right mr-3" htmlFor="selectProjectName">
-          Project
-        </label>
-        <select
-          id="selectProjectName"
-          value={
-            selectedItems.length === 0 ? selectedFlag : selectedProjectName
-          }
-          className="custom-select col-7"
-          onChange={this.onChange.bind(this)}
+      <form className="form-group row mb-0">
+        <label
+          className="col-sm-4 m-sm-0 pr-0 d-flex align-items-center justify-content-sm-end"
+          htmlFor="selectProjectName"
         >
-          <option>{selectedFlag}</option>
-          {items.map((item, index) => {
-            const { project } = item;
-            // Add all unique project names to array
-            if (selectProjects.indexOf(project) === -1) {
-              selectProjects.push(project);
-              return <option key={index}>{project}</option>;
+          <span>Project</span>
+        </label>
+        <div className="col-sm-8">
+          <select
+            id="selectProjectName"
+            value={
+              selectedItems.length === 0 ? selectedFlag : selectedProjectName
             }
-          })}
-        </select>
-      </React.Fragment>
+            className="custom-select"
+            onChange={this.onChange.bind(this)}
+          >
+            <option>{selectedFlag}</option>
+            {items.map((item, index) => {
+              const { project } = item;
+              // Add all unique project names to array
+              if (selectProjects.indexOf(project) === -1) {
+                selectProjects.push(project);
+                return <option key={index}>{project}</option>;
+              }
+            })}
+          </select>
+        </div>
+      </form>
     );
   }
 }

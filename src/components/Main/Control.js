@@ -12,18 +12,18 @@ export class Control extends Component {
 
     return (
       <div
-        className={`mt-4 ${flagCloseAddForm ? '' : 'none'} ${
+        className={`${flagCloseAddForm ? '' : 'none'} ${
           flagOpenEditForm ? 'none' : ''
         }`}
       >
-        <form className="form-inline justify-content-around">
-          <div className="custom-control custom-checkbox col-sm-4 pl-5">
-            <Sort />
+        <div className="row my-4 px-4 ">
+          <div className="col-sm-4 d-flex align-items-center">
+            <Sort tasks={tasks} />
           </div>
-          <div className="form-group justify-content-end col-sm-8">
+          <div className="col-sm-8 mt-2 mt-sm-0">
             <Select tasks={tasks} />
           </div>
-        </form>
+        </div>
       </div>
     );
   }

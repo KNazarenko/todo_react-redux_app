@@ -14,9 +14,6 @@ class Add extends Component {
       description: '',
       error: {}
     };
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
   closeAddForm(e) {
     e.preventDefault();
@@ -24,7 +21,6 @@ class Add extends Component {
     this.props.closeAdd();
   }
 
-  // Clear State
   clearState() {
     this.setState({
       name: '',
@@ -84,11 +80,11 @@ class Add extends Component {
           <div className="form-group row">
             <label
               htmlFor="inputTaskTitle"
-              className="col-sm-5 col-form-label text-right"
+              className="col-sm-4 col-form-label text-right"
             >
-              Название задачи
+              Task name
             </label>
-            <div className="col-sm-7">
+            <div className="col-sm-8">
               <input
                 type="text"
                 name="name"
@@ -105,11 +101,11 @@ class Add extends Component {
           <div className="form-group row">
             <label
               htmlFor="inputProjectTitle"
-              className="col-sm-5 col-form-label text-right"
+              className="col-sm-4 col-form-label text-right"
             >
-              Название проекта
+              Project name
             </label>
-            <div className="col-sm-7">
+            <div className="col-sm-8">
               <input
                 type="text"
                 name="project"
@@ -126,11 +122,11 @@ class Add extends Component {
           <div className="form-group row">
             <label
               htmlFor="inputPriority"
-              className="col-sm-5 col-form-label text-right"
+              className="col-sm-4 col-form-label text-right"
             >
-              Приоритет
+              Priority
             </label>
-            <div className="col-sm-7">
+            <div className="col-sm-8">
               <select
                 className="custom-select custom-select-sm"
                 name="priority"
@@ -147,11 +143,11 @@ class Add extends Component {
           <div className="form-group row">
             <label
               htmlFor="inputTaskDescribe"
-              className="col-sm-5 col-form-label text-right"
+              className="col-sm-4 col-form-label text-right"
             >
-              Описание задачи
+              Task description
             </label>
-            <div className="col-sm-7">
+            <div className="col-sm-8">
               <textarea
                 className={`form-control form-control-sm ${
                   error.description ? 'is-invalid' : ' '

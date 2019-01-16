@@ -24,3 +24,9 @@ export const UPDATE_TASK = 'UPDATE_TASK';
 |--------------------------------------------------
 */
 export const SET_CURRENT_SELECT = 'SET_CURRENT_SELECT';
+/**
+|--------------------------------------------------
+| Sort
+|--------------------------------------------------
+*/
+export const DO_SORT = 'DO_SORT';

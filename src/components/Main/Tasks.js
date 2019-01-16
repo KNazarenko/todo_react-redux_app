@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getTasks } from './../../actions/actions';
-import PropTypes from 'prop-types';
 import Task from './Task';
 
 class Tasks extends Component {
-  componentDidMount() {
-    this.props.getTasks();
-  }
-
   render() {
     const items = this.props.tasks;
 
@@ -30,11 +23,4 @@ class Tasks extends Component {
   }
 }
 
-Tasks.propTypes = {
-  getTasks: PropTypes.func.isRequired
-};
-
-export default connect(
-  null,
-  { getTasks }
-)(Tasks);
+export default Tasks;
