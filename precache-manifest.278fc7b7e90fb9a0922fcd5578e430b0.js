@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/todo_react-redux_app/static/css/1.b3e1a40a.chunk.css"
   },
   {
-    "revision": "ae4f5f49bdecd64b5c799ebb75726fd7",
+    "revision": "b8466b1bdee8ad52f074db1f0c963a05",
     "url": "/todo_react-redux_app/index.html"
   }
 ];
